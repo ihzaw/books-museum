@@ -1,7 +1,8 @@
 const Button = (props) => {
   const {
-    caption,
-    type
+    type,
+    children,
+    ...rest
   } = props
 
   const selectorClass = {
@@ -15,7 +16,7 @@ const Button = (props) => {
   }
 
   return (
-    <button className={`${type ? styleProps[type] : styleProps['default']} transition rounded-full p-2 min-w-full`}>{caption}</button>
+    <button {...rest} className={`${type ? styleProps[type] : styleProps['default']} transition rounded-full p-2 min-w-full`}>{children}</button>
   )
 }
 
