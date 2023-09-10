@@ -33,11 +33,6 @@ const Header = () => {
           </Button>
         </Link>
       </div>
-      {selectedMenu === "todo" && (
-        <div className="col-start-11 col-span-2">
-          <Button type="static">Add a new Todo</Button>
-        </div>
-      )}
     </div>
   );
 };
