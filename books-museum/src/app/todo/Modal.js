@@ -1,13 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { mutate } from "swr";
 
 const Modal = (props) => {
   const formDefault = { id: "", name: "" };
   const { show, toggle, selected = formDefault } = props;
-
-  const router = useRouter();
   const [form, setForm] = useState(formDefault);
   const [error, setError] = useState(false);
   const formType = selected.id ? "Update" : "Create";
@@ -29,7 +27,7 @@ const Modal = (props) => {
       });
       toggle();
       setForm(formDefault)
-      router.refresh();
+      mutate('/api/todos')
     } catch (error) {
       setError(true);
     }

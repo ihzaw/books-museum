@@ -4,12 +4,13 @@ import { v4 as uuidv4 } from "uuid";
 
 export async function GET() {
   try {
+    console.log('masuk get')
     // get the todos list
     const dataDir = "./src/data/todo.json";
     const todosData = fs.readFileSync(`${dataDir}`, "utf-8");
     let todos = JSON.parse(todosData);
 
-    return NextResponse.json({ data: todos });
+    return NextResponse.json({ payload: todos });
   } catch (error) {
     console.error(error);
     return NextResponse.json(

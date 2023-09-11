@@ -1,3 +1,5 @@
+import { useEffect } from "react"
+
 const Button = (props) => {
   const {
     type,
@@ -16,7 +18,7 @@ const Button = (props) => {
   }
 
   return (
-    <button {...rest} className={`${type ? styleProps[type] : styleProps['default']} transition rounded-full p-2 min-w-full`}>{children}</button>
+    <button {...rest} className={`${type ? styleProps[type] : styleProps['default']} ${rest.className} transition rounded-full p-2 min-w-full`}>{children}</button>
   )
 }
 

@@ -3,16 +3,15 @@
 import { Edit, X } from "react-feather";
 import { useState } from "react";
 import Modal from "./Modal";
-import { useRouter } from "next/navigation";
 import CheckBox from "@/components/commons/CheckBox";
+import { mutate } from "swr";
+
 
 const Card = (props) => {
   const { todo } = props;
 
   const [show, setShow] = useState(false);
   const [selected, setSelected] = useState({ id: "", name: "" });
-  const router = useRouter()
-
   const getTime = (isoTime) => {
     const parsedDate = new Date(isoTime);
     const options = {
@@ -42,9 +41,9 @@ const Card = (props) => {
           "Content-Type": "application/json",
         },
       });
-      router.refresh();
+      mutate('/api/todos')
     } catch (error) {
-      console.log("error");
+      console.log(error)
     }
   };
 
@@ -56,7 +55,7 @@ const Card = (props) => {
           "Content-Type": "application/json",
         },
       });
-      router.refresh();
+      mutate('/api/todos')
     } catch (error) {
       console.log("error");
     }
