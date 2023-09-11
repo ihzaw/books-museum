@@ -9,8 +9,8 @@ export async function GET() {
     let todos = JSON.parse(todosData);
 
     return NextResponse.json({ payload: todos });
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+    console.error(err);
     return NextResponse.json(
       { error: "An error occurred while getting user data." },
       { status: 500 }
@@ -47,8 +47,8 @@ export async function POST(req, res) {
       { message: "User data updated successfully." },
       { status: 200 }
     );
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+    console.error(err);
     return NextResponse.json(
       { error: "An error occurred while updating user data." },
       { status: 500 }

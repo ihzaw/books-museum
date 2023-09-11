@@ -13,8 +13,8 @@ export async function DELETE(req, { params }) {
     fs.writeFileSync(`${dataDir}`, JSON.stringify(todos, null, 2));
 
     return new Response(null, { status: 204 });
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+    console.error(err);
     return NextResponse.json(
       { error: "An error occurred while deleting user data." },
       { status: 500 }
@@ -35,8 +35,8 @@ export async function PATCH(req, { params }) {
     fs.writeFileSync(`${dataDir}`, JSON.stringify(todos, null, 2));
 
     return new Response(null, { status: 204 });
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+    console.error(err);
     return NextResponse.json(
       { error: "An error occurred while patching user data." },
       { status: 500 }

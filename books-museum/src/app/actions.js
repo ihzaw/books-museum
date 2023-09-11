@@ -46,7 +46,7 @@ export const updateTodos = async (payload) => {
     revalidateTag("todos");
     return res.json();
   } catch (err) {
-    console.log("err :", err);
+    console.log(err);
     return err;
   }
 };
@@ -59,7 +59,7 @@ export const patchTodo = async (id) => {
     revalidateTag("todos");
     return { message: "ok" };
   } catch (err) {
-    console.log("err :", err);
+    console.log(err);
     return err;
   }
 };
@@ -75,7 +75,7 @@ export const deleteTodo = async (id) => {
     revalidateTag("todos");
     return { message: "ok" };
   } catch (err) {
-    console.log("err :", err);
+    console.log(err);
     return err;
   }
 };

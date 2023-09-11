@@ -4,7 +4,7 @@ import { Edit, X } from "react-feather";
 import { useState } from "react";
 import Modal from "./Modal";
 import CheckBox from "@/components/commons/CheckBox";
-import { patchTodo, getTodos, deleteTodo } from "../actions";
+import { patchTodo, deleteTodo } from "../actions";
 
 const Card = (props) => {
   const { todo } = props;
@@ -35,23 +35,23 @@ const Card = (props) => {
   const handleCheckBox = async (id) => {
     try {
       await patchTodo(id);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     }
   };
 
   const handleDelete = async (id) => {
     try {
       await deleteTodo(id);
-    } catch (error) {
-      console.log("error");
+    } catch (err) {
+      console.log("err");
     }
   };
 
   return (
     <>
       <Modal show={show} toggle={() => setShow(!show)} selected={selected} />
-      <div className="transition-all p-4 bg-yellow-100 text-yellow-600 rounded-xl flex justify-between gap-2 mb-4 relative">
+      <div className={`transition p-4 ${todo.isComplete ? 'opacity-50' : ''} bg-yellow-100 text-yellow-600 rounded-xl flex justify-between gap-2 mb-4 relative`}>
         <X
           onClick={() => handleDelete(todo.id)}
           className="absolute right-2 w-5 h-5 cursor-pointer"

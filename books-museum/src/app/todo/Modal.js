@@ -21,8 +21,8 @@ const Modal = (props) => {
       await updateTodos(form)
       toggle();
       setForm(formDefault)
-    } catch (error) {
-      console.log('error :', error)
+    } catch (err) {
+      console.log(err)
       setError(true);
     }
   };
