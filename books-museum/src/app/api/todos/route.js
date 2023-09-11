@@ -4,8 +4,6 @@ import { v4 as uuidv4 } from "uuid";
 
 export async function GET() {
   try {
-    console.log('masuk get')
-    // get the todos list
     const dataDir = "./src/data/todo.json";
     const todosData = fs.readFileSync(`${dataDir}`, "utf-8");
     let todos = JSON.parse(todosData);
@@ -22,14 +20,12 @@ export async function GET() {
 
 export async function POST(req, res) {
   try {
-    // get the todos list
     const dataDir = "./src/data/todo.json";
     const todosData = fs.readFileSync(`${dataDir}`, "utf-8");
     let todos = JSON.parse(todosData);
 
     const body = await req.json();
 
-    // Add or edit the todos data
     const newTodo = {
       ...body,
       id: body.id ? body.id : uuidv4(),
@@ -45,7 +41,6 @@ export async function POST(req, res) {
       todos.push(newTodo);
     }
 
-    // Write the updated JSON data back to the file
     fs.writeFileSync(`${dataDir}`, JSON.stringify(todos, null, 2));
 
     return NextResponse.json(

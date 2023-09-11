@@ -5,7 +5,10 @@ const nextConfig = {
       'covers.openlibrary.org',
       'placehold.co'
     ]
-  }
+  },
+  experimental: {
+    serverActions: true,
+  },
 }
 
 module.exports = nextConfig

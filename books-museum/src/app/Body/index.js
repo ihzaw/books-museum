@@ -9,7 +9,7 @@ const Body = (props) => {
       {data.map((el, index) => {
         return (
           <>
-            {index === 0 && (
+            {/* {index === 0 && ( */}
               <div
                 key={el.key}
                 className="bg-yellow-500 rounded-xl col-span-4 row-span-2 p-4"
@@ -47,8 +47,8 @@ const Body = (props) => {
                 </div>
 
                 {/* Card Footer */}
-                <div className="border-t-2 border-t-yellow-800 flex flex-wrap gap-1">
-                  {el.subjects.map((el, index) => {
+                <div className="border-t-2 pt-2 border-t-yellow-800 flex flex-wrap gap-1">
+                  {el?.subjects?.map((el, index) => {
                     if (index < 3) {
                       return (
                         <div
@@ -62,15 +62,15 @@ const Body = (props) => {
                   })}
                 </div>
               </div>
-            )}
+            {/* )} */}
 
-            {index === 1 && (
+            {/* {index === 1 && (
               <div className="bg-cyan-700 rounded-xl col-span-8"></div>
             )}
 
             {index === 2 && (
               <div className="bg-yellow-800 rounded-xl col-span-8"></div>
-            )}
+            )} */}
           </>
         );
       })}

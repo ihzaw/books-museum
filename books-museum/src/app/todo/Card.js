@@ -4,8 +4,7 @@ import { Edit, X } from "react-feather";
 import { useState } from "react";
 import Modal from "./Modal";
 import CheckBox from "@/components/commons/CheckBox";
-import { mutate } from "swr";
-
+import { patchTodo, getTodos, deleteTodo } from "../actions";
 
 const Card = (props) => {
   const { todo } = props;
@@ -35,27 +34,15 @@ const Card = (props) => {
 
   const handleCheckBox = async (id) => {
     try {
-      await fetch(`/api/todos/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      mutate('/api/todos')
+      await patchTodo(id);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`/api/todos/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      mutate('/api/todos')
+      await deleteTodo(id);
     } catch (error) {
       console.log("error");
     }
@@ -64,15 +51,18 @@ const Card = (props) => {
   return (
     <>
       <Modal show={show} toggle={() => setShow(!show)} selected={selected} />
-      <div className="p-4 bg-yellow-100 text-yellow-600 font-semibold rounded-xl flex justify-between gap-2 mb-4 relative">
+      <div className="transition-all p-4 bg-yellow-100 text-yellow-600 rounded-xl flex justify-between gap-2 mb-4 relative">
         <X
           onClick={() => handleDelete(todo.id)}
           className="absolute right-2 w-5 h-5 cursor-pointer"
         />
         <div className="w-3/4 flex items-center">
-          <CheckBox checked={todo.isComplete} onClick={() => handleCheckBox(todo.id)}/>
+          <CheckBox
+            checked={todo.isComplete}
+            onClick={() => handleCheckBox(todo.id)}
+          />
           <div className="ml-4">
-            <h3 className="text-lg">{todo.name}</h3>
+            <h3 className="text-lg font">{todo.name}</h3>
             <p className="italic text-xs font-normal">
               last updated at <span>{getTime(todo.updatedAt)}</span>
             </p>

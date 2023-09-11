@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { mutate } from "swr";
+import { updateTodos } from "../actions";
 
 const Modal = (props) => {
   const formDefault = { id: "", name: "" };
@@ -18,17 +18,11 @@ const Modal = (props) => {
     e.preventDefault();
     setError(false);
     try {
-      await fetch("/api/todos", {
-        method: "POST",
-        body: JSON.stringify(form),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      await updateTodos(form)
       toggle();
       setForm(formDefault)
-      mutate('/api/todos')
     } catch (error) {
+      console.log('error :', error)
       setError(true);
     }
   };
@@ -53,7 +47,7 @@ const Modal = (props) => {
   }
   return (
     <div
-      className="relative z-10"
+      className="relative z-10 transition-all"
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"

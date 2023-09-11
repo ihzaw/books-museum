@@ -1,12 +1,10 @@
-"use client"
 
 import CreateTodoButton from "./CreateTodo";
 import Card from "./Card";
-import useSWR from "swr";
+import { getTodos } from "../actions";
 
-const TodoPage = () => {
-  const fetcher = (url) => fetch(url).then(res => res.json())
-  const todos = useSWR('/api/todos', fetcher);
+const TodoPage = async () => {
+  const todos = await getTodos()
 
   return (
     <>
@@ -17,12 +15,12 @@ const TodoPage = () => {
           </h1>
         </div>
         <div className="w-full">
-          {todos.data?.payload?.map((todo) => {
+          {todos.payload?.map((todo) => {
             return (
               <Card todo={todo}/>
             );
           })}
-          {todos.data?.payload?.length < 1 && (
+          {todos.payload?.length < 1 && (
             <div className="text-center mb-4">
               <h3 className="text-xl">Looks like you don't have anything yet!</h3>
             </div>
