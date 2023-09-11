@@ -8,7 +8,6 @@ const SearchBar = (props) => {
   const [name, setName] = useState("");
 
   const handleChange = (e) => {
-    console.log(e);
     setName(e.target.value);
   };
 
